@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: nginx-deployment
+spec:
+  replicas: 3
+  template:
+    metadata:
+      name: nginx-pod
+      labels:
+        app: nginx-pod
+    spec:
+      containers:
+        - name: nginx-container
+          image: nginx-container
+          ports:
+            - containePort: 80
+  selector:
+  matchLabels:
+    app:  nginx-pod
+
+
+# Visualiza os pods running
+# $ kubectl get pods
+
+# Visualizar informações do replicaset
+# $ kubectl get replicasets
+
+#ou
+
+# $ kubectl get rs --watch
+
+# Visualizar informações do deployments
+# $ kubectl get deployments
+
+# Os deployments permite o controle de versionamento das imagens no kubernets 
+
+# Criando o deployment com o record para poder comentar o deploymente 
+# kubectl apply -f .\nginx-deployment.yaml --record
+
+# Visualizar os deployments
+# $ kubectl rollout history deployment nginx-deployment
+
+# Inserindo um comentario a mudança feita no deployment
+# $ kubectl annotate deployment nginx-deployment kubernetes.io/change-cause="Definindo a imagem na versão latest"
+
+#Visualizar as informações do deployment
+# $ kubectl describe nginx-deployment
+
+# Voltando para um versão anterior 
+# $ kubectl rollout undo deployment nginx-deployment --to-revision=2 
+
