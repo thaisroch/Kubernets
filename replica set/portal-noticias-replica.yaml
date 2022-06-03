@@ -1,0 +1,35 @@
+apiVersion: apps/v1 # apiVersion padrão de Replica set
+kind: ReplicaSet
+metadata:
+  name: portal-noticias-replicaset
+spec:
+  template: 
+    metadata:
+      name: portal-noticias
+      labels:
+        app: portal-noticias
+    spec:
+      containers:
+        - name: portal-noticias-container
+          image: aluracursos/portal-noticias:1
+          ports:
+            - containerPort: 80
+          envForm:
+            - configMapRef:
+                name: portal-configmap
+    replicas: 3 # Quantidade de pod que terá no estado running configurado dentro do replica set
+    selector:
+      matchLabels: # Informando ao repplica set qual é a labels - app que será gerenciada
+        app: portal-noticias
+
+
+# Visualiza os pods running
+# $ kubectl get pods
+
+# Visualizar informações do replicaset
+# $ kubectl get replicasets
+
+#ou
+
+# $ kubectl get rs --watch
+
