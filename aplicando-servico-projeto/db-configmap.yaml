@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: db-configmap
+data:
+  #chave => valor
+  MYSQL_ROOT_PASSWORD: q1w2e3r4
+  MYSQL_DATABASE: empresa
+  MYSQL_PASSWORD: q1w2e3r4
+
+
+# Verificar os configmap
+# $ kubectl get configmap
+
+# Descrever um configmap
+# $ kubectl describe configmap db-configmap
+
+#----------------------------------------#
+
+# Acessar o pod do sistema em modo interativo;
+# $ kubectl exec -it sistema-noticias -- bash
+
+#Arquivos localizados em /var/www/html/.

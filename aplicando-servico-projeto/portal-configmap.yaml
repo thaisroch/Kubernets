@@ -1,20 +1,11 @@
 apiVersion: v1
-kind: Pod
-metadata:
-  name: portal-noticias
-  labels:
-    app: portal-noticias
-spec: 
-  containers: 
-    - name: portal-noticias-container
-      image: aluracursos/portal-noticias:1
-      ports:
-        - containerPort: 80
-      envFrom:
-        - configMapRef:
-          name: portal-configmap
-
-
+kind: ConfigMap
+metadata: 
+  name: portal-configmap
+data: 
+  # windows é o IP do SISTEMA http://localhost:30006
+  # Linux é o INTERNAL IP do NODE:30006
+  IP_SISTEMA: http://192.168.1.106:30006
 
 # Verificar os pods
 # $ kubectl get pods
