@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-volume
+spec:
+  containers:
+    - name: nginx-container
+      image: nginx:latest
+      volumeMounts:
+        - mountPath: /volume-dentro-do-container
+          name: primeiro-volume
+    #--------------------------------------- Outro container -------------------------------------------#
+    - name: jenkins:alpine
+      image: jenkins:alpine
+      volumeMounts:
+        - mountPath: /volume-dentro-do-container
+          name: primeiro-volume
+  volumes:
+    - name: primeiro-volume
+      hostPath:
+        path: /home/primeiro-volume
+        type: Directoy
+    
+# Testando com o Minikube
+
+#$ minikube ssh
+#$ cd /home
+#$ mkdir primeiro-volume
+
+#Volumes possuem ciclo de vida dependentes de Pods e independentes de containers.
+
+#--------------------------------------------------------------------------------------------------

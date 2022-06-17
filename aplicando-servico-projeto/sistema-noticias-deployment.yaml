@@ -1,0 +1,23 @@
+apiVersion: apps/v1 # apiVersion padrão de deployments
+kind: Deployment
+metadata:
+  name: sistema-noticias-deployment
+spec:
+  replicas: 3 
+  template: 
+    metadata:
+      name: sistema-noticias
+      labels:
+        app: sistema-noticias
+    spec:
+      containers:
+        - name: sistema-noticias-container
+          image: aluracursos/sistema-noticias:1
+          ports:
+            - containerPort: 80
+          envForm:
+            - configMapRef:
+                name: sistema-configmap
+  selector:
+    matchLabels: # Informando ao repplica set qual é a labels - app que será gerenciada
+      app: sistema-noticias

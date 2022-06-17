@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pv-1
+spec:  
+  accessModes:
+      - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: standard
+
+
+#google cloud
+
+# https://kubernetes.io/docs/concepts/storage/persistent-volumes/
+
+#PersistentVolumes possuem ciclos de vida independentes de Pods.
+#É necessário um PersistentVolumeClaim para acessar um PersistentVolume.

@@ -1,0 +1,33 @@
+
+#Volumes possuem ciclo de vida dependentes de Pods e independentes de containers.
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-volume
+spec:
+  containers:
+    - name: nginx-container
+      image: nginx:latest
+      volumeMounts:
+        - mountPath: /volume-dentro-do-container
+          name: segundo-volume
+    - name: jenkins:alpine
+      image: jenkins:alpine
+      volumeMounts:
+        - mountPath: /volume-dentro-do-container
+          name: segundo-volume
+  volumes:
+    - name: segundo-volume
+      hostPath:
+        path: /home/segundo-volume
+        type: DirectoyOrCreate
+    
+# Testando com o Minikube
+
+# Caso não exista o diretorio segundo-volume ele irá fazer a criação dele!
+
+
+#--------------------------------------------------------------------------------------------------
+
+#Storage Classes fornecem dinamismo para criação de PersistentVolumes conforme demanda.

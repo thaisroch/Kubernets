@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Depĺoyments
+metadata:
+  name: portal-noticias-deployment
+spec:
+  template: 
+    metadata:
+      name: portal-noticias
+      labels:
+        app: portal-noticias
+    spec:
+      containers:
+        - name: portal-noticias-container
+          image: aluracursos/portal-noticias:1
+          ports:
+            - containerPort: 80
+          envForm:
+            - configMapRef:
+                name: portal-configmap
+    replicas: 3 # Quantidade de pod que terá no estado running configurado dentro do deployment
+      matchLabels:
+        app: portal-noticias
+

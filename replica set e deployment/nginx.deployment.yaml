@@ -16,8 +16,8 @@ spec:
           ports:
             - containePort: 80
   selector:
-  matchLabels:
-    app:  nginx-pod
+    matchLabels:
+      app:  nginx-pod
 
 
 # Visualiza os pods running
@@ -38,11 +38,11 @@ spec:
 # Criando o deployment com o record para poder comentar o deploymente 
 # kubectl apply -f .\nginx-deployment.yaml --record
 
-# Visualizar os deployments
+# Visualizar cotrole de  versões de  deployments
 # $ kubectl rollout history deployment nginx-deployment
 
-# Inserindo um comentario a mudança feita no deployment
-# $ kubectl annotate deployment nginx-deployment kubernetes.io/change-cause="Definindo a imagem na versão latest"
+# Inserindo um comentario a versão feita no deployment
+# $ kubectl annotate deployment nome-do-deployment kubernetes.io/change-cause="Definindo a imagem na versão latest"
 
 #Visualizar as informações do deployment
 # $ kubectl describe nginx-deployment
